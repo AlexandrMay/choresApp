@@ -1,0 +1,2 @@
+rootProject.name='ChoreApp'
+include ':app'
