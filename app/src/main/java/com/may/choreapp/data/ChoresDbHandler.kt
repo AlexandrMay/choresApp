@@ -51,6 +51,8 @@ class ChoresDbHandler(context:Context): SQLiteOpenHelper(context, DATABASE_NAME,
         if (cursor!= null)
             cursor.moveToFirst()
         var chore = Chore()
+
+        chore.id = cursor.getInt(cursor.getColumnIndex(KEY_ID))
         chore.choreName = cursor.getString(cursor.getColumnIndex(KEY_CHORE_NAME))
         chore.assignedTo = cursor.getString(cursor.getColumnIndex(KEY_CHORE_ASSIGNED_TO))
         chore.assignedBy = cursor.getString(cursor.getColumnIndex(KEY_CHORE_ASSIGNED_BY))
@@ -73,9 +75,9 @@ class ChoresDbHandler(context:Context): SQLiteOpenHelper(context, DATABASE_NAME,
         return db.update(TABLE_NAME, values, KEY_ID + "=?", arrayOf(chore.id.toString()))
     }
 
-    fun deleteChore(chore: Chore){
+    fun deleteChore(id: Int) {
         val db: SQLiteDatabase = writableDatabase
-        db.delete(TABLE_NAME, KEY_ID + "=?", arrayOf(chore.id.toString()))
+        db.delete(TABLE_NAME, KEY_ID + "=?", arrayOf(id.toString()))
         db.close()
     }
 
@@ -84,6 +86,38 @@ class ChoresDbHandler(context:Context): SQLiteOpenHelper(context, DATABASE_NAME,
         var countQuery = "SELECT * FROM " + TABLE_NAME
         var cursor: Cursor = db.rawQuery(countQuery, null)
         return cursor.count
+    }
+
+    fun readChores(): ArrayList<Chore> {
+
+
+        var db: SQLiteDatabase = readableDatabase
+        var list: ArrayList<Chore> = ArrayList()
+
+        //Select all chores from table
+        var selectAll = "SELECT * FROM " + TABLE_NAME
+
+        var cursor: Cursor = db.rawQuery(selectAll, null)
+
+        //loop through our chores
+        if (cursor.moveToFirst()) {
+            do {
+                var chore = Chore()
+
+                chore.id = cursor.getInt(cursor.getColumnIndex(KEY_ID))
+                chore.choreName = cursor.getString(cursor.getColumnIndex(KEY_CHORE_NAME))
+                chore.assignedTo = cursor.getString(cursor.getColumnIndex(KEY_CHORE_ASSIGNED_TO))
+                chore.timeAssigned = cursor.getLong(cursor.getColumnIndex(KEY_CHORE_ASSIGNED_TIME))
+                chore.assignedBy = cursor.getString(cursor.getColumnIndex(KEY_CHORE_ASSIGNED_BY))
+
+                list.add(chore)
+
+            }while (cursor.moveToNext())
+        }
+
+
+        return list
+
     }
 
 

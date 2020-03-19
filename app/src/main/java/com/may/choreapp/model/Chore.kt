@@ -1,5 +1,8 @@
 package com.may.choreapp.model
 
+import java.text.DateFormat
+import java.util.*
+
 class Chore() {
     var choreName: String? = null
     var assignedBy: String? = null
@@ -13,6 +16,19 @@ class Chore() {
         this.assignedTo = assignedTo
         this.timeAssigned = timeAssigned
         this.id = id
+    }
+
+    fun showHumanDate(timeAssigned: Long?): String {
+
+        var dateFormat: DateFormat = DateFormat.getDateInstance()
+        var formattedDate: String = dateFormat.format(Date(timeAssigned!!).time)
+
+        return "Created: ${formattedDate}"
+
+    }
+
+    override fun toString(): String {
+        return "Chore(choreName=$choreName, assignedBy=$assignedBy, assignedTo=$assignedTo, timeAssigned=$timeAssigned, id=$id)"
     }
 
 }

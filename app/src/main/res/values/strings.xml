@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ChoreApp</string>
+    <string name="icon_of_a_chore">icon of a chore</string>
+    <string name="chore_name">Chore name</string>
+    <string name="assignedby">AssignedBy</string>
+    <string name="assigned_to">Assigned To:</string>
+    <string name="assigned_by">Assigned By:</string>
 </resources>

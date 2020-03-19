@@ -7,9 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.may.choreapp.R
+import com.may.choreapp.data.ChoreListAdapter
 import com.may.choreapp.data.ChoresDbHandler
 import com.may.choreapp.model.Chore
+import kotlinx.android.synthetic.main.activity_chore_list.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -24,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         dbHandler = ChoresDbHandler(this)
 
+        checkDb()
 
         saveChore.setOnClickListener {
             progressDialog.setMessage("Saving...")
@@ -38,6 +43,7 @@ class MainActivity : AppCompatActivity() {
                 saveToDb(chore)
                 progressDialog.cancel()
                 startActivity(Intent(this, ChoreListActivity::class.java))
+                finish()
 
             } else {
                 Toast.makeText(this, "Enter all values", Toast.LENGTH_SHORT).show()
@@ -48,6 +54,12 @@ class MainActivity : AppCompatActivity() {
 
     fun saveToDb(chore: Chore){
         dbHandler.createChore(chore)
+    }
+
+    fun checkDb(){
+        if(dbHandler.getChoresCount() > 0){
+            startActivity(Intent(this, ChoreListActivity::class.java))
+        }
     }
 
 

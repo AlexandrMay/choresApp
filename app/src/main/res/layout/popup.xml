@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/popEnterChore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="enter a chore"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/popAssignTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="assign to"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/popEnterChore"
+        app:layout_constraintStart_toStartOf="@+id/popEnterChore"
+        app:layout_constraintTop_toBottomOf="@+id/popEnterChore" />
+
+    <EditText
+        android:id="@+id/popAssignBy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="assigned by"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/popAssignTo"
+        app:layout_constraintStart_toStartOf="@+id/popAssignTo"
+        app:layout_constraintTop_toBottomOf="@+id/popAssignTo" />
+
+    <Button
+        android:id="@+id/popSaveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="SAVE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popAssignBy" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
