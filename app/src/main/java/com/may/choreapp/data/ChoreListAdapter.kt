@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.may.choreapp.R
 import com.may.choreapp.model.Chore
+import kotlinx.android.synthetic.main.popup.view.*
 
 class ChoreListAdapter(val chores: ArrayList<Chore>, val context: Context) :
     RecyclerView.Adapter<ChoreListAdapter.ViewHolder>() {
